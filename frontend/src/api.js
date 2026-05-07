@@ -1,7 +1,14 @@
 import axios from "axios";
 
+const getBaseURL = () => {
+  if (typeof window !== 'undefined' && window.location.hostname === 'localhost') {
+    return "http://localhost:5001/api";
+  }
+  return "/_/backend/api";
+};
+
 const api = axios.create({
-  baseURL: "http://localhost:5001/api"
+  baseURL: getBaseURL()
 });
 
 api.interceptors.request.use((config) => {

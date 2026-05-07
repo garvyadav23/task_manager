@@ -358,7 +358,59 @@ Dark mode is automatically applied based on system preference:
 - bcrypt: ^5.0.0
 - dotenv: ^16.0.0
 
-## 👥 Contributing
+## � Deployment
+
+### Vercel Deployment
+
+This project is configured for deployment on Vercel with the following structure:
+- **Frontend**: Deployed at root `/` using Vite
+- **Backend**: Deployed at `/_/backend` as serverless functions
+
+#### Prerequisites
+- Vercel account (https://vercel.com)
+- MongoDB connection string (MongoDB Atlas recommended)
+
+#### Steps
+
+1. **Push your code to GitHub** (if not already done)
+
+2. **Import project to Vercel**:
+   - Go to https://vercel.com/import
+   - Select your GitHub repository
+   - Vercel will auto-detect the configuration from `vercel.json`
+
+3. **Set Environment Variables** in Vercel Dashboard:
+   - Go to Settings → Environment Variables
+   - Add the following:
+     ```
+     MONGO_URI=your_mongodb_atlas_connection_string
+     JWT_SECRET=your_secure_jwt_secret_key
+     ```
+
+4. **Deploy**:
+   - Vercel will automatically deploy when you push to main branch
+   - Frontend builds using Vite
+   - Backend runs as serverless functions
+
+#### Production URLs
+- **Frontend**: `https://your-project.vercel.app`
+- **Backend API**: `https://your-project.vercel.app/_/backend/api`
+
+#### Local Development
+For local testing that mirrors production routing:
+```bash
+# Terminal 1 - Frontend
+cd frontend
+npm run dev
+
+# Terminal 2 - Backend
+cd backend
+npm run dev
+```
+
+API calls will use `http://localhost:5001/api` locally and `/_/backend/api` on production.
+
+## �👥 Contributing
 
 Contributions are welcome! Please follow these steps:
 1. Fork the repository

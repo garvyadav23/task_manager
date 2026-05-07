@@ -7,8 +7,14 @@ dotenv.config();
 
 const app = express();
 
+const allowedOrigins = [
+  "http://localhost:5173",
+  process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : null,
+  "https://ethara.vercel.app"
+].filter(Boolean);
+
 app.use(cors({
-  origin: "http://localhost:5173",
+  origin: allowedOrigins,
   credentials: true
 }));
 app.use(express.json());
