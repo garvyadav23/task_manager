@@ -4,7 +4,7 @@ import api from "../api";
 import { AuthContext } from "../context/AuthContext";
 
 export default function Signup() {
-  const { setToken } = useContext(AuthContext);
+  const { setToken, setUser } = useContext(AuthContext);
   const [data, setData] = useState({ name: "", email: "", password: "", role: "Member" });
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
