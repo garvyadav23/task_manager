@@ -1,9 +1,22 @@
 const express = require("express");
 const dotenv = require("dotenv");
+const path = require("path");
 const cors = require("cors");
 const connectDB = require("./config/db");
 
-dotenv.config();
+// Load environment variables from .env file
+dotenv.config({ path: path.join(__dirname, ".env") });
+
+// Verify environment variables are loaded
+if (!process.env.MONGO_URI) {
+  console.error("❌ Error: MONGO_URI is not set in .env file");
+  process.exit(1);
+}
+
+if (!process.env.JWT_SECRET) {
+  console.error("❌ Error: JWT_SECRET is not set in .env file");
+  process.exit(1);
+}
 
 const app = express();
 
